@@ -1,6 +1,13 @@
+"""
+network.py
+@gnauheinna
+The Network Class is the center piece of the project. It is a module to implement the stochastic descent learning
+algorithm for a feedforward neural network. Gradients are calculated using backpropagation. 
+"""
+
+# Libraies
 import numpy as np
 import random
-# The Network Class is the center piece of the project; it represents the neutral network 
 
 class Network(object):
 
