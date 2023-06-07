@@ -81,3 +81,47 @@ class Network(object):
             nabla_w = [nw+dnw for nw, dnw in zip(nabla_w, delta_nabla_w)]
         self.weights = [w-(eta/len(mini_batch))*nw for w, nw in zip(self.weights, nabla_w)]
         self.biases = [b-(eta/len(mini_batch))*nb for b, nb in zip(self.biases, nabla_b)]
+
+    def backprop(self, x, y):
+        """
+            REturns a tuple (nabla_b, nabla_w) representing the gradient for the cost function 
+            ("nabla_b" and "nabla_w" are layer by layer lists of numpy arrays, similar to "self.biases" and "self.weights")
+        """
+        nabla_b = [np.zeros(b.shape) for b in self.biases]
+        nabla_w = [np.zeros(w.shape) for w in self.weights]
+
+        # feedforward
+        activation = x
+        activations = [x]       # list to store all the activations layer by layer
+        zs = [] # liost to store all the z vectors, layer by layer
+        for b, w in zip(self.biases, self.weights):
+            z = np.dot(w, activation) + b
+            zs.append(z)
+            activation = self.sigmoid(z)
+            activations.append(activation)
+
+        # backward pass
+        delta = self.cost_derivatve(activations[-1], y) *self.sigmoid_prime(zs[-1])
+        nabla_b[-1] = delta
+        nabla_w[-1] = np.dot(delta, activations[-2].transpose())
+        # the variable 1 in the loop below is used this way: 
+        # 1= 1 means the last layer of neurons, 1 = 2 is the second last layer of neurons and so -on
+        for l in range(2, self.num_layers):
+            z = zs[-l]
+            sp = self.sigmoid_prime(z)
+            delta = np.dot(self.weights[-l + 1].transpose(), delta) * sp
+            nabla_b[-l] = delta
+            nabla_w[-l] = np.dot(delta, activations[-l-1].transpose())
+        return (nabla_b, nabla_w)
+    
+    def cost_derivative(self, output_activations, y):
+        """
+            REturn the vector of partial derivatives \partial{} C_x /\ partial{} a
+            for the output activations
+        """
+        return(output_activations-y)
+    
+    def sigmoid_prime(self,z):
+        """Derivative of the sigmoid function"""
+        return self.sigmoid(z)*(1-self.sigmoid(z))
+    
