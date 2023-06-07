@@ -5,7 +5,7 @@ A library to load the MNIST image data
 """
 
 # Libraries
-import _compat_pickle as cp
+import pickle as cp
 import gzip
 import numpy as np
 
