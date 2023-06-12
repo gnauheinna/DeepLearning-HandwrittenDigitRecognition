@@ -1,7 +1,7 @@
 # DeepLearning-HandwrittenDigitRecognition
 
 Project Idea:
-This project is a feedforward neural network that classifies handwritten digits.
+This project is a feedforward neural network that classifies handwritten digits. The project uses the MNIST (modified subset of data collected by the US National Institution of Standards and Technology.) The MNIST data contains images that are scanned handwritten samples from 250 people.
 
 The project include three modules, network.py, network2.py, and network3.py (with the latter modules as improved versions of the first network). 
 1. Networt.py is a module that implements the stochastic gradient descent learning algorithm for a feedforward neural network.  Gradients are calculated using backpropagation. 
