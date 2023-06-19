@@ -84,7 +84,7 @@ class Network(object):
 
     def backprop(self, x, y):
         """
-            REturns a tuple (nabla_b, nabla_w) representing the gradient for the cost function 
+            Returns a tuple (nabla_b, nabla_w) representing the gradient for the cost function 
             ("nabla_b" and "nabla_w" are layer by layer lists of numpy arrays, similar to "self.biases" and "self.weights")
         """
         nabla_b = [np.zeros(b.shape) for b in self.biases]
@@ -93,7 +93,7 @@ class Network(object):
         # feedforward
         activation = x
         activations = [x]       # list to store all the activations layer by layer
-        zs = [] # liost to store all the z vectors, layer by layer
+        zs = []                 # list to store all the z vectors, layer by layer
         for b, w in zip(self.biases, self.weights):
             z = np.dot(w, activation) + b
             zs.append(z)
