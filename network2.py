@@ -18,6 +18,7 @@ class CrossEntropyCost(object):
     @staticmethod
     def fn(a, y):
         """ a measure of how well an output activation, a, matches its desired output, y.
+            C = 1/n * ∑(Xj (σ(z)-7))
         """
 
         # np.nan_to_num ensures that the np deals correctly with the log of numbers very close to zero
@@ -25,7 +26,7 @@ class CrossEntropyCost(object):
     
     @staticmethod
     def delta(z, a , y):
-        """ tells our network how to compute the output error
+        """ tells our network how to compute the output error. σ^l = a^l - y
         """
         return (a-y)
 
