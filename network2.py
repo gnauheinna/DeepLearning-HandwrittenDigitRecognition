@@ -1,10 +1,16 @@
 """
     network2.py - QuadraticCost, CrossEntropyCost, and Network Class
     @gnauheinna
+    An Improved version of network.py, this network implements the stochastic gradient descent
+    learning algorithm for a feeddorward neural network. Improvements include the addition of the
+    crossed-entropy cost function, regularization, and  better initialization of network weights.
 """
 
 # Libraries
 import numpy as np
+import json
+import random
+import sys
 
 
 ##### Quadratic Cost
@@ -36,6 +42,7 @@ class CrossEntropyCost(object):
             parameters in order to make the interface consistent with the delta method for other cost classes.
         """
         return (a-y)
+
 
 ##### Main Network Clas
 class Network(object):
