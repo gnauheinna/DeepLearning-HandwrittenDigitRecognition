@@ -14,7 +14,7 @@ import sys
 
 
 ##### Quadratic Cost
-
+# the quadratic cost function causes a learning slowdown whenever an output neuron saturates on the wrong value
 
 
 ##### Cross-entropy cost functions
